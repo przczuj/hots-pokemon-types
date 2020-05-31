@@ -28,6 +28,31 @@
                 box-shadow: 0 0 6px 1px rgba(0,0,0,.6);
             }
 
+            td .portrait {
+                width: 16px;
+                height: 16px;
+                display: inline-block;
+            }
+
+            td.type-cell {
+                border: solid 1px #313131;
+                text-align: center;
+
+            }
+
+            div#tabs button {
+                margin: 5px;
+                padding: 10px;
+                background-color: #313131;
+                color: white;
+            }
+
+            div.types {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+
             div.type {
                 border-radius: 20px; 
                 -moz-border-radius: 20px; 
@@ -38,6 +63,11 @@
 
                 color: #FFF;
                 text-align: center;
+
+                padding-left: 3px;
+                padding-right: 3px;
+
+                display: inline-block;
             }
             div.type.normal {
                 background: #A8A878;
@@ -117,6 +147,14 @@
             var getPortraitUrl = function(name) {
                 return "https://static.heroesofthestorm.com/gd/cc87c8bcafc797c1daf40e7a7ee7dfca/heroes/" + name + "/circleIcon.png"
             };
+
+            var types = [
+                "normal", "fire", "fighting", "water",
+                "flying", "grass", "poison", "electric",
+                "ground", "psychic", "rock", "ice",
+                "bug", "dragon", "ghost", "dark",
+                "steel", "fairy"
+            ];
 
             var heroes = {
                 "deathwing": {
@@ -391,8 +429,23 @@
                 }
             });
 
+            var tabsDiv = document.createElement('div');
+            tabsDiv.setAttribute("id", "tabs");
+
+            var heroesTabButton = document.createElement('button');
+            heroesTabButton.setAttribute("class", "default-tab");
+            heroesTabButton.setAttribute("onclick", "switchTab(event, 'heroes')");
+            heroesTabButton.innerHTML = "Heroes";
+            tabsDiv.appendChild(heroesTabButton);
+
+            var typesTableTabButton = document.createElement('button');
+            typesTableTabButton.setAttribute("onclick", "switchTab(event, 'types-table')");
+            typesTableTabButton.innerHTML = "Types table";
+            tabsDiv.appendChild(typesTableTabButton);
+
             var heroesDiv = document.createElement('div');
             heroesDiv.setAttribute("id", "heroes");
+            heroesDiv.setAttribute("class", "tabcontent");
             for (var name in heroes) {
                 var heroDiv = document.createElement('div');
                 heroDiv.setAttribute("id", name);
@@ -411,7 +464,7 @@
                 heroes[name].types.forEach((type) => {
                     var typeDiv = document.createElement('div');
                     typeDiv.setAttribute("class", "type " + type);
-                    typeDiv.innerHTML = type.toUpperCase()
+                    typeDiv.innerHTML = type.toUpperCase();
 
                     typesDiv.appendChild(typeDiv);
                 });
@@ -420,8 +473,82 @@
                 heroesDiv.appendChild(heroDiv);
             }
 
+            var typesTableDiv = document.createElement('div');
+            typesTableDiv.setAttribute("id", "types-table");
+            typesTableDiv.setAttribute("class", "tabcontent");
+
+            var typesTable = document.createElement('table');
+            typesTableDiv.appendChild(typesTable);
+
+            var typesTableHeaderTr = document.createElement('tr');
+            var emptyTh = document.createElement('th');
+            typesTableHeaderTr.appendChild(emptyTh);
+            types.forEach((rowType) => {
+                var typeTh = document.createElement('th');
+                typeTh.setAttribute("class", "top-header");
+                typesTableHeaderTr.appendChild(typeTh);
+
+                var typeDiv = document.createElement('div');
+                typeDiv.setAttribute("class", "type " + rowType);
+                typeDiv.innerHTML = rowType.toUpperCase();
+                typeTh.appendChild(typeDiv);
+            });
+            typesTable.appendChild(typesTableHeaderTr);
+
+            types.forEach((columnType) => {
+                var typesTableTr = document.createElement('tr');
+                typesTable.appendChild(typesTableTr);
+
+                var columnTypeTh = document.createElement('th');
+                columnTypeTh.setAttribute("class", "left-header");
+                typesTableTr.appendChild(columnTypeTh);
+
+                var typeDiv = document.createElement('div');
+                typeDiv.setAttribute("class", "type " + columnType);
+                typeDiv.innerHTML = columnType.toUpperCase();
+                columnTypeTh.appendChild(typeDiv);
+
+                types.forEach((rowType) => {
+                    var typeCellTd = document.createElement('td');
+                    typeCellTd.setAttribute("class", "type-cell");
+                    typesTableTr.appendChild(typeCellTd);
+
+                    for (var name in heroes) {
+                        if (heroes[name].types.every((type) => [columnType, rowType].includes(type))
+                            && [columnType, rowType].every((type) => heroes[name].types.includes(type))) {
+                            var heroPortraitDiv = document.createElement('div');
+                            heroPortraitDiv.setAttribute("class", "portrait");
+                            typeCellTd.appendChild(heroPortraitDiv);
+
+                            var heroPortraitImg = document.createElement('img');
+                            heroPortraitImg.setAttribute("class", "portrait");
+                            heroPortraitImg.setAttribute("src", getPortraitUrl(name));
+                            heroPortraitDiv.appendChild(heroPortraitImg);
+                        }
+                    }
+                });
+            });
+
+            document.body.appendChild(tabsDiv);
             document.body.appendChild(heroesDiv);
+            document.body.appendChild(typesTableDiv);
+
+            document.getElementsByClassName("default-tab")[0].click();
         });
+
+        function switchTab(event, tab) {
+            var i, tabcontent, tablinks;
+            [].forEach.call(document.getElementsByClassName("tabcontent"), (tabcontent) => {
+                tabcontent.style.display = "none";
+            });
+
+            [].forEach.call(document.getElementsByClassName("tablinks"), (tablink) => {
+                tablink.className = tablink.className.replace("active", "");
+            });
+
+            document.getElementById(tab).style.display = "flex";
+            event.currentTarget.className += " active";
+        }
         </script>
     </head>
 </html>
