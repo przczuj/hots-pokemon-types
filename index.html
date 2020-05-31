@@ -1,0 +1,245 @@
+<html>
+    <head>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+
+            html {
+                font-family: helvetica, arial, sans-serif;
+                background: black;
+            }
+
+            #heroes {
+                position: absolute;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .portrait {
+                width: 128px;
+                height: 128px;
+
+                border-radius: 50%;
+                background: linear-gradient(180deg,#000933 0,#141f52);
+                box-shadow: 0 0 6px 1px rgba(0,0,0,.6);
+            }
+
+            div.type {
+                border-radius: 20px; 
+                -moz-border-radius: 20px; 
+                -webkit-border-radius: 20px; 
+                -khtml-border-radius: 20px; 
+                -icab-border-radius: 20px; 
+                -o-border-radius: 20px;
+
+                color: #FFF;
+                text-align: center;
+            }
+            div.type.normal {
+                background: #A8A878;
+                border: 1px solid #6D6D4E";
+            }
+            div.type.fire {
+                background:#F08030;
+                border: 1px solid #9C531F;
+            }
+            div.type.fighting {
+                background:#C03028;
+                border: 1px solid #7D1F1A;
+            }
+            div.type.water {
+                background:#6890F0;
+                border: 1px solid #445E9C;
+            }
+            div.type.flying {
+                background:#A890F0;
+                border: 1px solid #6D5E9C;
+            }
+            div.type.grass {
+                background:#78C850;
+                border: 1px solid #4E8234;
+            }
+            div.type.poison {
+                background:#A040A0;
+                border: 1px solid #682A68;
+            }
+            div.type.electric {
+                background:#F8D030;
+                border: 1px solid #A1871F;
+            }
+            div.type.ground {
+                background:#E0C068;
+                border: 1px solid #927D44;
+            }
+            div.type.psychic {
+                background:#F85888;
+                border: 1px solid #A13959;
+            }
+            div.type.rock {
+                background:#B8A038;
+                border: 1px solid #786824;
+            }
+            div.type.ice {
+                background:#98D8D8;
+                border: 1px solid #638D8D;
+            }
+            div.type.bug {
+                background:#A8B820;
+                border: 1px solid #6D7815;
+            }
+            div.type.dragon {
+                background:#7038F8;
+                border: 1px solid #4924A1;
+            }
+            div.type.ghost {
+                background:#705898;
+                border: 1px solid #493963;
+            }
+            div.type.dark {
+                background:#705848;
+                border: 1px solid #49392F;
+            }
+            div.type.steel {
+                background:#B8B8D0;
+                border: 1px solid #787887;
+            }
+            div.type.fairy {
+                background:#EE99AC;
+                border: 1px solid #9B6470;
+            }
+        </style>
+        <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var getPortraitUrl = function(name) {
+                return "https://static.heroesofthestorm.com/gd/cc87c8bcafc797c1daf40e7a7ee7dfca/heroes/" + name + "/circleIcon.png"
+            };
+
+            var heroes = [
+                {"name": "deathwing", "types": ["dragon", "ground"]},
+                {"name": "qhira", "types": ["fighting"]},
+                {"name": "anduin", "types": ["normal", "fairy"]},
+                {"name": "imperius", "types": ["fairy", "fire"]},
+                {"name": "orphea", "types": ["dark"]},
+                {"name": "malganis", "types": ["dark"]},
+                {"name": "mephisto", "types": ["electric", "ghost"]},
+                {"name": "whitemane", "types": ["fairy"]},
+                {"name": "yrel", "types": ["fighting", "fairy"]},
+                {"name": "deckard", "types": ["normal"]},
+                {"name": "fenix", "types": ["steel"]},
+                {"name": "maiev", "types": ["steel", "dark"]},
+                {"name": "blaze", "types": ["fire", "steel"]},
+                {"name": "hanzo", "types": ["normal","dragon"]},
+                {"name": "alexstrasza", "types": ["dragon", "fire"]},
+                {"name": "junkrat", "types": ["normal", "fire"]},
+                {"name": "ana", "types": ["normal", "poison"]},
+                {"name": "kelthuzad", "types": ["ice", "ghost"]},
+                {"name": "garrosh", "types": ["fighting"]},
+                {"name": "stukov", "types": ["normal", "bug"]},
+                {"name": "malthael", "types": ["dark", "ghost"]},
+                {"name": "dva", "types": ["steel", "normal"]},
+                {"name": "genji", "types": ["steel", "dragon"]},
+                {"name": "cassia", "types": ["fighting", "electric"]},
+                {"name": "probius", "types": ["steel"]},
+                {"name": "lucio", "types": ["normal"]},
+                {"name": "valeera", "types": ["dark", "poison"]},
+                {"name": "zuljin", "types": ["fighting"]},
+                {"name": "ragnaros", "types": ["fire"]},
+                {"name": "varian", "types": ["fighting"]},
+                {"name": "samuro", "types": ["fighting"]},
+                {"name": "zarya", "types": ["normal", "fighting"]},
+                {"name": "alarak", "types": ["psychic", "electric"]},
+                {"name": "auriel", "types": ["fairy"]},
+                {"name": "guldan", "types": ["poison", "dark"]},
+                {"name": "medivh", "types": ["flying", "fairy"]},
+                {"name": "chromie", "types": ["dragon", "ground"]},
+                {"name": "tracer", "types": ["normal"]},
+                {"name": "dehaka", "types": ["ground", "bug"]},
+                {"name": "xul", "types": ["ghost"]},
+                {"name": "li-ming", "types": ["psychic"]},
+                {"name": "greymane", "types": ["normal"]},
+                {"name": "lunara", "types": ["poison", "grass"]},
+                {"name": "cho", "types": ["fighting"]},
+                {"name": "gall", "types": ["dark", "psychic"]},
+                {"name": "artanis", "types": ["fighting", "psychic"]},
+                {"name": "lt-morales", "types": ["normal"]},
+                {"name": "rexxar", "types": ["normal"]},
+                {"name": "kharazim", "types": ["fighting", "flying"]},
+                {"name": "leoric", "types": ["ghost"]},
+                {"name": "the-butcher", "types": ["fighting", "dark"]},
+                {"name": "johanna", "types": ["steel", "fairy"]},
+                {"name": "kaelthas", "types": ["fire"]},
+                {"name": "sylvanas", "types": ["dark", "ghost"]},
+                {"name": "the-lost-vikings", "types": ["normal", "fighting"]},
+                {"name": "thrall", "types": ["ground", "fighting"]},
+                {"name": "jaina", "types": ["ice"]},
+                {"name": "azmodan", "types": ["dark"]},
+                {"name": "anubarak", "types": ["bug"]},
+                {"name": "chen", "types": ["normal", "fire"]},
+                {"name": "rehgar", "types": ["ground", "fighting"]},
+                {"name": "zagara", "types": ["bug"]},
+                {"name": "murky", "types": ["water", "poison"]},
+                {"name": "brightwing", "types": ["fairy", "dragon"]},
+                {"name": "li-li", "types": ["normal"]},
+                {"name": "tychus", "types": ["normal", "steel"]},
+                {"name": "abathur", "types": ["bug"]},
+                {"name": "arthas", "types": ["ice", "ghost"]},
+                {"name": "diablo", "types": ["dark", "fire"]},
+                {"name": "illidan", "types": ["fighting", "dark"]},
+                {"name": "kerrigan", "types": ["psychic", "bug"]},
+                {"name": "malfurion", "types": ["grass", "fairy"]},
+                {"name": "muradin", "types": ["fighting"]},
+                {"name": "nazeebo", "types": ["poison", "bug"]},
+                {"name": "nova", "types": ["psychic"]},
+                {"name": "raynor", "types": ["normal", "steel"]},
+                {"name": "sgt-hammer", "types": ["steel", "fire"]},
+                {"name": "sonya", "types": ["fighting", "ground"]},
+                {"name": "tyrael", "types": ["fairy"]},
+                {"name": "tyrande", "types": ["fairy", "dark"]},
+                {"name": "uther", "types": ["fairy"]},
+                {"name": "valla", "types": ["fighting", "dark"]},
+                {"name": "zeratul", "types": ["dark", "psychic"]},
+                {"name": "etc", "types": ["normal"]},
+                {"name": "falstad", "types": ["flying", "electric"]},
+                {"name": "gazlowe", "types": ["steel", "electric"]},
+                {"name": "stitches", "types": ["poison", "ghost"]},
+                {"name": "tassadar", "types": ["electric", "psychic"]}
+            ];
+
+            var heroesDiv = document.createElement('div');
+            heroesDiv.setAttribute("id", "heroes");
+            heroes.forEach((hero) => {
+                var heroDiv = document.createElement('div');
+                heroDiv.setAttribute("id", hero.name);
+
+                var heroPortraitDiv = document.createElement('div');
+                heroPortraitDiv.setAttribute("class", "portrait");
+                heroDiv.appendChild(heroPortraitDiv);
+
+                var heroPortraitImg = document.createElement('img');
+                heroPortraitImg.setAttribute("class", "portrait");
+                heroPortraitImg.setAttribute("src", getPortraitUrl(hero.name));
+                heroPortraitDiv.appendChild(heroPortraitImg);
+
+                var typesDiv = document.createElement('div');
+                typesDiv.setAttribute("class", "types");
+                hero.types.forEach((type) => {
+                    var typeDiv = document.createElement('div');
+                    typeDiv.setAttribute("class", "type " + type);
+                    typeDiv.innerHTML = type.toUpperCase()
+
+                    typesDiv.appendChild(typeDiv);
+                });
+                heroDiv.appendChild(typesDiv);
+
+                heroesDiv.appendChild(heroDiv);
+            });
+
+            document.body.appendChild(heroesDiv);
+        });
+        </script>
+    </head>
+</html>
