@@ -118,102 +118,284 @@
                 return "https://static.heroesofthestorm.com/gd/cc87c8bcafc797c1daf40e7a7ee7dfca/heroes/" + name + "/circleIcon.png"
             };
 
-            var heroes = [
-                {"name": "deathwing", "types": ["dragon", "ground"]},
-                {"name": "qhira", "types": ["fighting"]},
-                {"name": "anduin", "types": ["normal", "fairy"]},
-                {"name": "imperius", "types": ["fairy", "fire"]},
-                {"name": "orphea", "types": ["dark"]},
-                {"name": "malganis", "types": ["dark"]},
-                {"name": "mephisto", "types": ["electric", "ghost"]},
-                {"name": "whitemane", "types": ["fairy"]},
-                {"name": "yrel", "types": ["fighting", "fairy"]},
-                {"name": "deckard", "types": ["normal"]},
-                {"name": "fenix", "types": ["steel"]},
-                {"name": "maiev", "types": ["steel", "dark"]},
-                {"name": "blaze", "types": ["fire", "steel"]},
-                {"name": "hanzo", "types": ["normal","dragon"]},
-                {"name": "alexstrasza", "types": ["dragon", "fire"]},
-                {"name": "junkrat", "types": ["normal", "fire"]},
-                {"name": "ana", "types": ["normal", "poison"]},
-                {"name": "kelthuzad", "types": ["ice", "ghost"]},
-                {"name": "garrosh", "types": ["fighting"]},
-                {"name": "stukov", "types": ["normal", "bug"]},
-                {"name": "malthael", "types": ["dark", "ghost"]},
-                {"name": "dva", "types": ["steel", "normal"]},
-                {"name": "genji", "types": ["steel", "dragon"]},
-                {"name": "cassia", "types": ["fighting", "electric"]},
-                {"name": "probius", "types": ["steel"]},
-                {"name": "lucio", "types": ["normal"]},
-                {"name": "valeera", "types": ["dark", "poison"]},
-                {"name": "zuljin", "types": ["fighting"]},
-                {"name": "ragnaros", "types": ["fire"]},
-                {"name": "varian", "types": ["fighting"]},
-                {"name": "samuro", "types": ["fighting"]},
-                {"name": "zarya", "types": ["normal", "fighting"]},
-                {"name": "alarak", "types": ["psychic", "electric"]},
-                {"name": "auriel", "types": ["fairy"]},
-                {"name": "guldan", "types": ["poison", "dark"]},
-                {"name": "medivh", "types": ["flying", "fairy"]},
-                {"name": "chromie", "types": ["dragon", "ground"]},
-                {"name": "tracer", "types": ["normal"]},
-                {"name": "dehaka", "types": ["ground", "bug"]},
-                {"name": "xul", "types": ["ghost"]},
-                {"name": "li-ming", "types": ["psychic"]},
-                {"name": "greymane", "types": ["normal"]},
-                {"name": "lunara", "types": ["poison", "grass"]},
-                {"name": "cho", "types": ["fighting"]},
-                {"name": "gall", "types": ["dark", "psychic"]},
-                {"name": "artanis", "types": ["fighting", "psychic"]},
-                {"name": "lt-morales", "types": ["normal"]},
-                {"name": "rexxar", "types": ["normal"]},
-                {"name": "kharazim", "types": ["fighting", "flying"]},
-                {"name": "leoric", "types": ["ghost"]},
-                {"name": "the-butcher", "types": ["fighting", "dark"]},
-                {"name": "johanna", "types": ["steel", "fairy"]},
-                {"name": "kaelthas", "types": ["fire"]},
-                {"name": "sylvanas", "types": ["dark", "ghost"]},
-                {"name": "the-lost-vikings", "types": ["normal", "fighting"]},
-                {"name": "thrall", "types": ["ground", "fighting"]},
-                {"name": "jaina", "types": ["ice"]},
-                {"name": "azmodan", "types": ["dark"]},
-                {"name": "anubarak", "types": ["bug"]},
-                {"name": "chen", "types": ["normal", "fire"]},
-                {"name": "rehgar", "types": ["ground", "fighting"]},
-                {"name": "zagara", "types": ["bug"]},
-                {"name": "murky", "types": ["water", "poison"]},
-                {"name": "brightwing", "types": ["fairy", "dragon"]},
-                {"name": "li-li", "types": ["normal"]},
-                {"name": "tychus", "types": ["normal", "steel"]},
-                {"name": "abathur", "types": ["bug"]},
-                {"name": "arthas", "types": ["ice", "ghost"]},
-                {"name": "diablo", "types": ["dark", "fire"]},
-                {"name": "illidan", "types": ["fighting", "dark"]},
-                {"name": "kerrigan", "types": ["psychic", "bug"]},
-                {"name": "malfurion", "types": ["grass", "fairy"]},
-                {"name": "muradin", "types": ["fighting"]},
-                {"name": "nazeebo", "types": ["poison", "bug"]},
-                {"name": "nova", "types": ["psychic"]},
-                {"name": "raynor", "types": ["normal", "steel"]},
-                {"name": "sgt-hammer", "types": ["steel", "fire"]},
-                {"name": "sonya", "types": ["fighting", "ground"]},
-                {"name": "tyrael", "types": ["fairy"]},
-                {"name": "tyrande", "types": ["fairy", "dark"]},
-                {"name": "uther", "types": ["fairy"]},
-                {"name": "valla", "types": ["fighting", "dark"]},
-                {"name": "zeratul", "types": ["dark", "psychic"]},
-                {"name": "etc", "types": ["normal"]},
-                {"name": "falstad", "types": ["flying", "electric"]},
-                {"name": "gazlowe", "types": ["steel", "electric"]},
-                {"name": "stitches", "types": ["poison", "ghost"]},
-                {"name": "tassadar", "types": ["electric", "psychic"]}
-            ];
+            var heroes = {
+                "deathwing": {
+                    types: ["dragon", "ground"]
+                },
+                "qhira": {
+                    types: ["fighting"]
+                },
+                "anduin": {
+                    types: ["normal", "fairy"]
+                },
+                "imperius": {
+                    types: ["fairy", "fire"]
+                },
+                "orphea": {
+                    types: ["dark"]
+                },
+                "malganis": {
+                    types: ["dark"]
+                },
+                "mephisto": {
+                    types: ["electric", "ghost"]
+                },
+                "whitemane": {
+                    types: ["fairy"]
+                },
+                "yrel": {
+                    types: ["fighting", "fairy"]
+                },
+                "deckard": {
+                    types: ["normal"]
+                },
+                "fenix": {
+                    types: ["steel"]
+                },
+                "maiev": {
+                    types: ["steel", "dark"]
+                },
+                "blaze": {
+                    types: ["fire", "steel"]
+                },
+                "hanzo": {
+                    types: ["normal", "dragon"]
+                },
+                "alexstrasza": {
+                    types: ["dragon", "fire"]
+                },
+                "junkrat": {
+                    types: ["normal", "fire"]
+                },
+                "ana": {
+                    types: ["normal", "poison"]
+                },
+                "kelthuzad": {
+                    types: ["ice", "ghost"]
+                },
+                "garrosh": {
+                    types: ["fighting"]
+                },
+                "stukov": {
+                    types: ["normal", "bug"]
+                },
+                "malthael": {
+                    types: ["dark", "ghost"]
+                },
+                "dva": {
+                    types: ["steel", "normal"]
+                },
+                "genji": {
+                    types: ["steel", "dragon"]
+                },
+                "cassia": {
+                    types: ["fighting", "electric"]
+                },
+                "probius": {
+                    types: ["steel"]
+                },
+                "lucio": {
+                    types: ["normal"]
+                },
+                "valeera": {
+                    types: ["dark", "poison"]
+                },
+                "zuljin": {
+                    types: ["fighting"]
+                },
+                "ragnaros": {
+                    types: ["fire"]
+                },
+                "varian": {
+                    types: ["fighting"]
+                },
+                "samuro": {
+                    types: ["fighting"]
+                },
+                "zarya": {
+                    types: ["normal", "fighting"]
+                },
+                "alarak": {
+                    types: ["psychic", "electric"]
+                },
+                "auriel": {
+                    types: ["fairy"]
+                },
+                "guldan": {
+                    types: ["poison", "dark"]
+                },
+                "medivh": {
+                    types: ["flying", "fairy"]
+                },
+                "chromie": {
+                    types: ["dragon", "ground"]
+                },
+                "tracer": {
+                    types: ["normal"]
+                },
+                "dehaka": {
+                    types: ["ground", "bug"]
+                },
+                "xul": {
+                    types: ["ghost"]
+                },
+                "li-ming": {
+                    types: ["psychic"]
+                },
+                "greymane": {
+                    types: ["normal"]
+                },
+                "lunara": {
+                    types: ["poison", "grass"]
+                },
+                "cho": {
+                    types: ["fighting"]
+                },
+                "gall": {
+                    types: ["dark", "psychic"]
+                },
+                "artanis": {
+                    types: ["fighting", "psychic"]
+                },
+                "lt-morales": {
+                    types: ["normal"]
+                },
+                "rexxar": {
+                    types: ["normal"]
+                },
+                "kharazim": {
+                    types: ["fighting", "flying"]
+                },
+                "leoric": {
+                    types: ["ghost"]
+                },
+                "the-butcher": {
+                    types: ["fighting", "dark"]
+                },
+                "johanna": {
+                    types: ["steel", "fairy"]
+                },
+                "kaelthas": {
+                    types: ["fire"]
+                },
+                "sylvanas": {
+                    types: ["dark", "ghost"]
+                },
+                "the-lost-vikings": {
+                    types: ["normal", "fighting"]
+                },
+                "thrall": {
+                    types: ["ground", "fighting"]
+                },
+                "jaina": {
+                    types: ["ice"]
+                },
+                "azmodan": {
+                    types: ["dark"]
+                },
+                "anubarak": {
+                    types: ["bug"]
+                },
+                "chen": {
+                    types: ["normal", "fire"]
+                },
+                "rehgar": {
+                    types: ["ground", "fighting"]
+                },
+                "zagara": {
+                    types: ["bug"]
+                },
+                "murky": {
+                    types: ["water", "poison"]
+                },
+                "brightwing": {
+                    types: ["fairy", "dragon"]
+                },
+                "li-li": {
+                    types: ["normal"]
+                },
+                "tychus": {
+                    types: ["normal", "steel"]
+                },
+                "abathur": {
+                    types: ["bug"]
+                },
+                "arthas": {
+                    types: ["ice", "ghost"]
+                },
+                "diablo": {
+                    types: ["dark", "fire"]
+                },
+                "illidan": {
+                    types: ["fighting", "dark"]
+                },
+                "kerrigan": {
+                    types: ["psychic", "bug"]
+                },
+                "malfurion": {
+                    types: ["grass", "fairy"]
+                },
+                "muradin": {
+                    types: ["fighting"]
+                },
+                "nazeebo": {
+                    types: ["poison", "bug"]
+                },
+                "nova": {
+                    types: ["psychic"]
+                },
+                "raynor": {
+                    types: ["normal", "steel"]
+                },
+                "sgt-hammer": {
+                    types: ["steel", "fire"]
+                },
+                "sonya": {
+                    types: ["fighting", "ground"]
+                },
+                "tyrael": {
+                    types: ["fairy"]
+                },
+                "tyrande": {
+                    types: ["fairy", "dark"]
+                },
+                "uther": {
+                    types: ["fairy"]
+                },
+                "valla": {
+                    types: ["fighting", "dark"]
+                },
+                "zeratul": {
+                    types: ["dark", "psychic"]
+                },
+                "etc": {
+                    types: ["normal"]
+                },
+                "falstad": {
+                    types: ["flying", "electric"]
+                },
+                "gazlowe": {
+                    types: ["steel", "electric"]
+                },
+                "stitches": {
+                    types: ["poison", "ghost"]
+                },
+                "tassadar": {
+                    types: ["electric", "psychic"]
+                }
+            };
+
+            new URLSearchParams(window.location.search).forEach((value, key) => {
+                if (heroes[key] != undefined) {
+                    heroes[key].types = value.split(",");
+                }
+            });
 
             var heroesDiv = document.createElement('div');
             heroesDiv.setAttribute("id", "heroes");
-            heroes.forEach((hero) => {
+            for (var name in heroes) {
                 var heroDiv = document.createElement('div');
-                heroDiv.setAttribute("id", hero.name);
+                heroDiv.setAttribute("id", name);
 
                 var heroPortraitDiv = document.createElement('div');
                 heroPortraitDiv.setAttribute("class", "portrait");
@@ -221,12 +403,12 @@
 
                 var heroPortraitImg = document.createElement('img');
                 heroPortraitImg.setAttribute("class", "portrait");
-                heroPortraitImg.setAttribute("src", getPortraitUrl(hero.name));
+                heroPortraitImg.setAttribute("src", getPortraitUrl(name));
                 heroPortraitDiv.appendChild(heroPortraitImg);
 
                 var typesDiv = document.createElement('div');
                 typesDiv.setAttribute("class", "types");
-                hero.types.forEach((type) => {
+                heroes[name].types.forEach((type) => {
                     var typeDiv = document.createElement('div');
                     typeDiv.setAttribute("class", "type " + type);
                     typeDiv.innerHTML = type.toUpperCase()
@@ -236,7 +418,7 @@
                 heroDiv.appendChild(typesDiv);
 
                 heroesDiv.appendChild(heroDiv);
-            });
+            }
 
             document.body.appendChild(heroesDiv);
         });
